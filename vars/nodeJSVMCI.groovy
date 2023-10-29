@@ -50,21 +50,21 @@ def call(Map configMap){
             //install pipeline utility steps plugin, if not installed
             stage('Publish Artifact') {
                 steps {
-                    // nexusArtifactUploader(
-                    //     nexusVersion: 'nexus3',
-                    //     protocol: 'http',
-                    //     nexusUrl: '34.232.70.254:8081/',
-                    //     groupId: 'com.roboshop',
-                    //     version: "$packageVersion",
-                    //     repository: "${component}",
-                    //     credentialsId: 'nexus-auth',
-                    //     artifacts: [
-                    //         [artifactId: "${component}",
-                    //         classifier: '',
-                    //         file: "${component}.zip",
-                    //         type: 'zip']
-                    //     ]
-                    // )
+                    nexusArtifactUploader(
+                        nexusVersion: 'nexus3',
+                        protocol: 'http',
+                        nexusUrl: '34.207.221.31:8081/',
+                        groupId: 'com.roboshop',
+                        version: "$packageVersion",
+                        repository: "${component}",
+                        credentialsId: 'nexus-auth',
+                        artifacts: [
+                            [artifactId: "${component}",
+                            classifier: '',
+                            file: "${component}.zip",
+                            type: 'zip']
+                        ]
+                    )
                 }
             }
 

@@ -50,21 +50,21 @@ def call(Map configMap){
             //install pipeline utility steps plugin, if not installed
             stage('Publish Artifact') {
                 steps {
-                    nexusArtifactUploader(
-                        nexusVersion: 'nexus3',
-                        protocol: 'http',
-                        nexusUrl: '34.232.70.254:8081/',
-                        groupId: 'com.roboshop',
-                        version: "$packageVersion",
-                        repository: "${component}",
-                        credentialsId: 'nexus-auth',
-                        artifacts: [
-                            [artifactId: "${component}",
-                            classifier: '',
-                            file: "${component}.zip",
-                            type: 'zip']
-                        ]
-                    )
+                    // nexusArtifactUploader(
+                    //     nexusVersion: 'nexus3',
+                    //     protocol: 'http',
+                    //     nexusUrl: '34.232.70.254:8081/',
+                    //     groupId: 'com.roboshop',
+                    //     version: "$packageVersion",
+                    //     repository: "${component}",
+                    //     credentialsId: 'nexus-auth',
+                    //     artifacts: [
+                    //         [artifactId: "${component}",
+                    //         classifier: '',
+                    //         file: "${component}.zip",
+                    //         type: 'zip']
+                    //     ]
+                    // )
                 }
             }
 
@@ -76,6 +76,7 @@ def call(Map configMap){
                         echo "Deployment"
                         def params = [
                             string(name: 'version', value: "$packageVersion")
+                            string(name: 'environment', value: "dev")
                         ]
                         build job: "../${component}-deploy", wait: true, parameters: params
                     }
